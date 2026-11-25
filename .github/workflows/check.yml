@@ -1,0 +1,16 @@
+name: Synthetic check
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+permissions:
+  contents: read
+jobs:
+  synthetic-check:
+    name: synthetic-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check synthetic greeting
+        run: test "$(cat greeting.txt)" = "hello"
